@@ -4,7 +4,7 @@
 </ul>
 
 <!-- string interpolation good for text-->
-<p>{{title}}</p> 
+<p>{{title}}</p>
 <img src="{{ imageUrl }}" alt="alt text">
 
 <!-- property binding good for one way binding component => DOM -->
@@ -15,25 +15,25 @@
 <!-- DOM objects and html attributes can be different names -->
 <table>
     <tr>
-    <td [attr.colSpan]="colSpan">{{title}}</td>
+        <td [attr.colSpan]="colSpan">{{title}}</td>
     </tr>
 </table>
 
 <!-- bootstrap -->
 <!-- CLASS BINDING
     enable or disable a particular class dynamically 
-    with [class.ClassName] = boolean 
+    with [class.ClassName] = "boolean" 
 -->
 <button class="btn" [class.btn-primary]="isActive">Save</button>
 
 <!-- STYLE BINDING
     enable or disable a particular class dynamically 
-    with [class.ClassName] = boolean 
+    with [class.ClassName] = "boolean" 
 -->
 <button [style.backgroundColor]="isActive ? 'red': 'white'">Sample button</button>
 
 <!-- EVENT BINDING 
-    (eventName) = methodName(params);
+    (eventName) = "methodName(params)"
 -->
 <button (click)="onSave($event)">Button Event</button>
 
@@ -54,11 +54,13 @@
 <br><br><br><br><br><br>
 
 <!-- TWO WAY BINDING -->
-<input [(ngModel)]="someObject" (keyup)="onKeyUpdateSomeObject()">
-<br><br><br>
+<span [class.paddingBelow]="true">
+    <input [(ngModel)]="someObject" (keyup)="onKeyUpdateSomeObject()">
+</span>
+
 <!-- PIPES -->
 {{course.title | uppercase | lowercase }} <br>
 {{course.students | number}} <br>
 {{course.rating | number:'2.1-1'}} <br>
 {{course.price | currency:'AUD':true:'3.2-2'}} <br>
-{{course.releaseDate | date:'shortdate'}} <br>
+{{course.releaseDate | date:'shortDate'}} <br>

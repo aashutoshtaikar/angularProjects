@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SummaryPipe } from './summary.file';
+import { FavoriteComponent } from './favorite/favorite.component';
 // import { CoursesService } from './services/courses/courses.service';
 
 
@@ -13,7 +14,8 @@ import { SummaryPipe } from './summary.file';
   declarations: [
     AppComponent,
     CoursesComponent,
-    SummaryPipe
+    SummaryPipe,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,

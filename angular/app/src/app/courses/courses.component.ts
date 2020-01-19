@@ -9,7 +9,7 @@ import { CoursesService } from '../services/courses/courses.service';
 export class CoursesComponent implements OnInit {
   title = "List of courses";
   courses;
-  imageUrl = "https://www.gstatic.com/webp/gallery3/1.sm.png"
+  imageUrl = "https://www.gstatic.com/webp/gallery3/1.sm.png";
   colSpan = 2;
   isActive = true;
 
@@ -24,7 +24,7 @@ export class CoursesComponent implements OnInit {
   //two way data binding
   someObject;
 
-  constructor(coursesService: CoursesService) { 
+  constructor(coursesService: CoursesService) {
     this.courses = coursesService.getCourses();
   }
 
@@ -32,36 +32,36 @@ export class CoursesComponent implements OnInit {
   }
 
   //EVENT BINDING
-  onSave($event){
+  onSave($event) {
     // $event.stopPropagation(); ////prevent event bubbling
     console.log(event);
     console.log(event.srcElement)
     console.log('button was clicked');
   }
 
-  onDivClicked(){
+  onDivClicked() {
     console.log('div was clicked');
   }
 
-  onKeyUp($event){
-    console.log( $event.keyCode + 'key was pressed');
-    if($event.keyCode === 13) console.log("Enter key pressed");
+  onKeyUp($event) {
+    console.log($event.keyCode + 'key was pressed');
+    if ($event.keyCode === 13) console.log("Enter key pressed");
   }
 
-  onEnterKeyUp(){
+  onEnterKeyUp() {
     console.log("Enter key pressed");
   }
 
-  onKeyEvVar($event){
+  onKeyEvVar($event) {
     console.log($event.target.value);
   }
 
-  onKeyVar(email){
+  onKeyVar(email) {
     console.log(email);
     console.log(email.value);
   }
 
-  onKeyUpdateSomeObject(){
+  onKeyUpdateSomeObject() {
     console.log(this.someObject);
   }
 }
