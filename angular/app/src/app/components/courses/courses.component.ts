@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from '../services/courses/courses.service';
+import { CoursesService } from '../../services/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -23,7 +23,8 @@ export class CoursesComponent implements OnInit {
 
   //two way data binding
   someObject;
-
+  typeHere;
+  
   constructor(coursesService: CoursesService) {
     this.courses = coursesService.getCourses();
   }

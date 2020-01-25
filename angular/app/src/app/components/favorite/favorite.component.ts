@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, ViewEncapsulation, EventEmitter } fro
 
 
 @Component({
-  selector: 'app-favorite',
+  selector: 'favorite',
   templateUrl: './favorite.component.html',
   styleUrls: ['./favorite.component.css'],
   encapsulation: ViewEncapsulation.Emulated

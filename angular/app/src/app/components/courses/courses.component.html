@@ -57,6 +57,9 @@
 <span [class.paddingBelow]="true">
     <input [(ngModel)]="someObject" (keyup)="onKeyUpdateSomeObject()">
 </span>
+<input [(ngModel)]="typeHere" placeholder="type here">
+<input [(ngModel)]="typeHere" placeholder="see here">
+<input [value]="typeHere">
 
 <!-- PIPES -->
 {{course.title | uppercase | lowercase }} <br>
