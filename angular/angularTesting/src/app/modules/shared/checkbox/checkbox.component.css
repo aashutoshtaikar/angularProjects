@@ -1,0 +1,26 @@
+.markInactive{
+    border-radius: 4px;
+    border: solid 4px gray;
+    margin: 10px;
+}
+
+.gray{
+	color : white;
+	background-color: rgb(196, 201, 195);
+}
+
+.red{
+	color : #ad2b19;
+	background-color: #dd5b49;
+	border: solid 4px #ad1b09;
+}
+
+.green{
+    color : #77B66E;
+    background-color: rgb(167, 230, 158);;
+    border: solid 4px #77B66E;
+ }
+
+ :hover .markInactive{
+    cursor: default;
+ }
