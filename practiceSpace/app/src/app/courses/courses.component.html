@@ -1,0 +1,17 @@
+<p>courses works!</p>
+
+<!-- two way data binding -->
+<input [(ngModel)]="typeHere" placeholder="type here">
+<input type="text" [(ngModel)]="typeHere" placeholder="see here">
+<input [value]="typeHere">
+
+<input type="submit" value="clickMe" (click)="alertFunction($event)">
+<input #templateVar name="test" type="submit" value="clickMe" (click)="alertFunctionUsingTemplateVar(templateVar)">
+<div>
+    {{testSummary | summary:10:"lowercase"}}
+</div>
+
+<!-- <favorite [testData]="typeHere"></favorite> -->
+<favorite [isFavorite]="true" (change)="favoriteChanged($event)"></favorite>
+
+
