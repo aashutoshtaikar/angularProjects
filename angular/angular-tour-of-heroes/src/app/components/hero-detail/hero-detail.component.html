@@ -1,0 +1,9 @@
+<div class="detailsGrid" *ngIf="hero">
+    <button class="backBtn" (click)="goBack()">Back</button>
+    <h2>{{hero.name}} details!</h2>
+    <div><label>id: </label>{{hero.id}}</div>
+    <div>
+        <label>name: </label>
+        <input [(ngModel)]="hero.name" placeholder="name" />
+    </div>
+</div>

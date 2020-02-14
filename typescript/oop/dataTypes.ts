@@ -12,5 +12,3 @@ const ColorBlue = 2;
 enum Color { Red = 0, Green = 1, Purple = 2, Blue = 3};
 
 let backgroundColor = Color.Red;
-
-

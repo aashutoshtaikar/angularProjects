@@ -23,8 +23,6 @@ export class UserService {
             console.log(this.userMap.get(2));
             console.log(this.userMap);
       });
-
-      
   }
 
   retrieve(){

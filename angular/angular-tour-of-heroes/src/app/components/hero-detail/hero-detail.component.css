@@ -1,0 +1,23 @@
+.backBtn{
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: min-content;
+    border-radius: 10px;
+    background: rgb(149, 255, 255);
+    padding: 10px 20px;
+}
+
+.backBtn:hover{
+    margin: .1em;
+    background: aqua;
+    cursor: pointer;
+}
+
+.detailsGrid{
+    display: grid;
+    grid-template-columns: 1fr;
+    border:aqua 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: azure;
+}

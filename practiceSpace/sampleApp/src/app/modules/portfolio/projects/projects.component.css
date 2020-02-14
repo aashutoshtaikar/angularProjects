@@ -1,0 +1,17 @@
+.basic-container {
+    padding: 30px;
+  }
+
+.main-tab-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+}
+
+.mat-card{
+    cursor: pointer;
+}
+
+:hover.mat-card{
+    background-color: aqua;
+}
