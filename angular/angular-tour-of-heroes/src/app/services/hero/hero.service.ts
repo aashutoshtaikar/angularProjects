@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HEROES } from './mock-heroes';
 import { Hero } from 'src/models/hero.model';
-import { resolve } from 'url';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +24,15 @@ export class HeroService {
   getHero(id: number): Promise<Hero> {
     return this.getHeroes()
                .then(heroes => heroes.find(hero => hero.id === id));
+  }
+
+  getHeroesSlowlyObs(): Observable<Hero[]>{
+    // return new Observable(observer=>{
+    //   setInterval(()=>observer.next(HEROES),10000);
+    // });
+
+    return new Observable(observer=>{
+      setTimeout(()=>observer.next(HEROES),10000);
+    });
   }
 }

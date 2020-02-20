@@ -17,7 +17,9 @@ export class DashboardComponent implements OnInit {
   }
 
   getHeroes() {
-    this.heroService.getHeroesSlowly()
-      .then(response => this.heroes = response.slice(1, 5));
+    // this.heroService.getHeroesSlowly()
+    //   .then(response => this.heroes = response.slice(1, 5));
+    this.heroService.getHeroesSlowlyObs()
+      .subscribe(response=>this.heroes = response.slice(1,5));
   }
 }
