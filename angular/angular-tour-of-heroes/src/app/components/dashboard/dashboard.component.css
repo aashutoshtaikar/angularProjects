@@ -1,0 +1,23 @@
+.grid{
+    display: grid;
+    grid-template-columns: repeat(4,20%);
+    min-width: min-content;
+    gap: 2em;
+    padding: 20px;
+    text-align: center;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.hero{
+    background-color: rgb(145, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero:hover{
+    cursor: pointer;
+    background-color: aqua;
+    margin: .1em;
+}
+

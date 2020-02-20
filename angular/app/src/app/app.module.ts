@@ -11,7 +11,10 @@ import { PanelComponent } from './components/panel/panel.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ZippyComponent } from './components/zippy/zippy.component';
 // import { CoursesService } from './services/courses/courses.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserComponent } from './components/user/user.component';
+import { PostComponent } from './components/post/post.component';
+import { AppInterceptorService } from './services/interceptors/appInterceptor/app-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     SummaryPipe,
     FavoriteComponent,
     PanelComponent,
-    ZippyComponent
+    ZippyComponent,
+    UserComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +35,11 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppInterceptorService,
+      multi: true
+    }
     // CoursesService //this is not required from angular6 can be included in service decorator as providedIn
   ],
   bootstrap: [AppComponent]

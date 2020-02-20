@@ -1,0 +1,11 @@
+<p appHighlight>home works!</p>
+<p appHighlight highlightColor="green">home works!</p>
+<p appHighlight [highlightColor]="'blue'">home works!</p>
+
+<div>
+    <input type="radio" name="colors" (click)="color='lightgreen'">
+    <input type="radio" name="colors" (click)="color='lightblue'">
+    <input type="radio" name="colors" (click)="color='cyan'">    
+</div>
+
+<p appHighlight [highlightColor]="color">Highlight me!</p>

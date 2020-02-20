@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.model';
+import { User } from '../../models/user.model';
+import { Observable, PartialObserver } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +25,23 @@ export class UserService {
             console.log(this.userMap.get(2));
             console.log(this.userMap);
       });
-
-      
   }
 
-  retrieve(){
-    return this.http.get('https://jsonplaceholder.typicode.com/users');
+  retrieve():Observable<Object>{
+    // return new Observable(observer=>{
+    //   var users;
+    //   this.http.get('https://jsonplaceholder.typicode.com/users').subscribe(resp=>users = resp);
+    //   setTimeout(()=>observer.next(users), 3000);
+    // });
+
+    // var temp;
+    // setTimeout(()=>{
+    //   temp = this.http.get('https://jsonplaceholder.typicode.com/users');
+    // },3000)
+    // return temp;
+
+    // return this.http.get('https://jsonplaceholder.typicode.com/users');
+
+    return this.http.get('https://jsonplaceholder.typicode.com/users').pipe(delay(5000));
   }
 }

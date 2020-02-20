@@ -1,0 +1,19 @@
+.main-grid{
+    display: grid;
+    grid-template-rows: minmax(min-content,20%) minmax(min-content,60%) minmax(min-content,20%);
+    grid-gap: 1em;
+}
+
+.top-grid{
+
+}
+
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+
+.mid-grid{
+    margin: auto 5%;
+}
