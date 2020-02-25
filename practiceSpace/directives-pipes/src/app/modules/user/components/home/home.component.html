@@ -1,11 +1,21 @@
-<p appHighlight>home works!</p>
-<p appHighlight highlightColor="green">home works!</p>
-<p appHighlight [highlightColor]="'blue'">home works!</p>
-
+<h3>custom directive example</h3>
+<p myHighlight>home works!</p>
+<p myHighlight highlightColor="green">home works!</p>
+<p myHighlight [highlightColor]="'blue'">home works!</p>
+<p myHighlight [defaultColor]="'cyan'">home works!</p>
 <div>
     <input type="radio" name="colors" (click)="color='lightgreen'">
     <input type="radio" name="colors" (click)="color='lightblue'">
     <input type="radio" name="colors" (click)="color='cyan'">    
 </div>
 
-<p appHighlight [highlightColor]="color">Highlight me!</p>
+<p myHighlight [highlightColor]="color">Highlight me!</p>
+
+<h3>custom directive example with value</h3>
+<input type="text" myPercent [(ngModel)]="sampleModel" placeholder="0.00">
+<!-- <input type="text" [value]="200.333 | number:'1.0-2'">
+<input type="text" appCurrency [ngModel]="sampleModel" (ngModelChange)="sampleModel=$event.value">
+
+<h3>Custom pipe example</h3>
+<input [ngModel]="sampleModel | mydecimal" (ngModelChange)="sampleModel = $event"> -->
+
