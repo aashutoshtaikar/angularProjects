@@ -10,11 +10,17 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class LoadingSpinnerComponent implements OnInit{
   ngOnInit(): void {
-    this.loadingScreenService.loadingStatus.pipe(
-      debounceTime(200)
-    ).subscribe((value) => {
-      this.loading = value;
-    });
+    console.log("spinner init");
+    // this.loadingScreenService.loadingStatus
+    //   .subscribe(() => {
+    //   console.log("does it ever gets here?" + this.loading);
+    //   // this.loading = value;
+    // });
+  }
+
+  ngDoCheck(){
+    this.loading = this.loadingScreenService.loading;
+    console.log(this.loading);
   }
 
   // debounceTime: number = 200;
@@ -33,14 +39,14 @@ export class LoadingSpinnerComponent implements OnInit{
   //   this.loadingSubscription.unsubscribe();
   // }
 
-  ngAfterViewInit(): void {
-    this._elmRef.nativeElement.style.display = 'none';
-    this.loadingScreenService.loadingStatus.subscribe(
-      (status: boolean) => {
-        console.log("subsciption success");
-        this._elmRef.nativeElement.style.display = status ? 'block' : 'none';
-        this._changeDetectorRef.detectChanges();
-      }
-    );}
+  // ngAfterViewInit(): void {
+  //   this._elmRef.nativeElement.style.display = 'none';
+  //   this.loadingScreenService.loadingStatus.subscribe(
+  //     (status: boolean) => {
+  //       console.log("subsciption success");
+  //       this._elmRef.nativeElement.style.display = status ? 'block' : 'none';
+  //       this._changeDetectorRef.detectChanges();
+  //     }
+  //   );}
   // }
 }

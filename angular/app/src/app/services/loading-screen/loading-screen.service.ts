@@ -18,10 +18,14 @@ export class LoadingScreenService {
   //   // this.loadingStatus.next(value);
   // }
 
-  startLoading(){
-    // console.log("startloading: " + this.loading);
-    // this.loading = true;
-   
+  constructor(){
+    this.loadingStatus.subscribe(()=>{
+      console.log("in subscription loading screen service");
+      this.loading = true;
+    })
+  }
+
+  startLoading(){   
     this.loading = true;
     console.log("startloading: " + this.loading);
     this.loadingStatus.next(true);

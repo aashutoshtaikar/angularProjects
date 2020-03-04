@@ -14,8 +14,8 @@ export class LoadingScreenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.activeRequests === 0) {
-      console.log("asd");
-      this.loadingScreenService.startLoading();
+      console.log("loading activate");
+      this.loadingScreenService.loadingStatus.next(true);
     }
 
     this.activeRequests++;
