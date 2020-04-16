@@ -15,6 +15,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { PostComponent } from './components/post/post.component';
 import { AppInterceptorService } from './services/interceptors/appInterceptor/app-interceptor.service';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { LoadingScreenInterceptor } from './services/interceptors/loading-screen-interceptor/loading-screen-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { AppInterceptorService } from './services/interceptors/appInterceptor/ap
     PanelComponent,
     ZippyComponent,
     UserComponent,
-    PostComponent
+    PostComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,11 @@ import { AppInterceptorService } from './services/interceptors/appInterceptor/ap
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingScreenInterceptor,
       multi: true
     }
     // CoursesService //this is not required from angular6 can be included in service decorator as providedIn
