@@ -17,7 +17,8 @@ import { PostComponent } from './components/post/post.component';
 import { AppInterceptorService } from './services/interceptors/appInterceptor/app-interceptor.service';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { LoadingScreenInterceptor } from './services/interceptors/loading-screen-interceptor/loading-screen-interceptor.service';
-
+import { InMemoryExampleComponent } from './components/in-memory-example/in-memory-example.component';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,14 +29,16 @@ import { LoadingScreenInterceptor } from './services/interceptors/loading-screen
     ZippyComponent,
     UserComponent,
     PostComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    InMemoryExampleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    InMemoryWebApiModule
   ],
   providers: [
     {
