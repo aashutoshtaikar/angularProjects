@@ -1,8 +1,10 @@
-
 <div class="container">
-    <angular-slickgrid gridId="grid1"
-              [columnDefinitions]="columnDefinitions"
-              [gridOptions]="gridOptions"
-              [dataset]="dataset">
+  <div id="demo-container">
+    <angular-slickgrid gridId="grid1" (onAngularGridCreated)="angularGridReady($event)"
+      [columnDefinitions]="columnDefinitions" [gridOptions]="gridOptions" [dataset]="dataset"
+      (sgOnCellChange)="onCellChanged($event.detail.eventData, $event.detail.args)"
+      (sgOnClick)="onCellClicked($event.detail.eventData, $event.detail.args)">>
     </angular-slickgrid>
   </div>
+
+</div>
