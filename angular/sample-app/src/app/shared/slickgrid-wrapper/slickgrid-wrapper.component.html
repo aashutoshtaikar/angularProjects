@@ -3,7 +3,7 @@
     <angular-slickgrid gridId="grid1" (onAngularGridCreated)="angularGridReady($event)"
       [columnDefinitions]="columnDefinitions" [gridOptions]="gridOptions" [dataset]="dataset"
       (sgOnCellChange)="onCellChanged($event.detail.eventData, $event.detail.args)"
-      (sgOnClick)="onCellClicked($event.detail.eventData, $event.detail.args)">>
+      (sgOnClick)="onCellClicked($event.detail.eventData, $event.detail.args)">
     </angular-slickgrid>
   </div>
 
