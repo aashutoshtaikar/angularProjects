@@ -1,5 +1,6 @@
 <div class="container">
   <div id="demo-container">
+    <input type="button" class="actionButton" (click)="addBlankRow()" value="add item" name="add item">
     <angular-slickgrid gridId="grid1" (onAngularGridCreated)="angularGridReady($event)"
       [columnDefinitions]="columnDefinitions" [gridOptions]="gridOptions" [dataset]="dataset"
       (sgOnCellChange)="onCellChanged($event.detail.eventData, $event.detail.args)"

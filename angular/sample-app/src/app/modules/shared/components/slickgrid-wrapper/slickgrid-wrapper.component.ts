@@ -2,24 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { AngularSlickgridModule, Column, GridOption, FieldType, Editors, AngularGridInstance, Formatters, OnEventArgs, EditorValidator, EditorArgs } from 'angular-slickgrid';
 import { TranslateService } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
-import { ErrorDialogService } from '../services/error-dialog/error-dialog.service';
+import { ErrorDialogService } from '../../services/error-dialog/error-dialog.service';
 
 const duplicateDateSgValidator: EditorValidator = (value: any, args: EditorArgs) => {
+  console.log(value);
   const grid = args && args.grid;
   const data = grid.getData();
   const items = data.getItems();
 
   let enteredDate = new Date(value).toISOString().split('T')[0];
-  let currentItem = args.item;
+  console.log('enteredDate:', enteredDate);
+  let currentActiveItem = args.item;
 
   const itemContainingDate = items.find(item => {
-    if (item.id != currentItem.id) {
-      let dateFromRow = new Date(item.start).toISOString().split('T')[0];
-      return dateFromRow === enteredDate;
+    console.log(item);
+    //if editing manually
+    // console.log('currentItem and item', currentItem, item);
+    if (item.start) {
+      if (currentActiveItem) {
+        if (item.id != currentActiveItem.id) {
+          let dateFromRow = new Date(item.start).toISOString().split('T')[0];
+          return dateFromRow === enteredDate;
+        }
+      }
+      else { // if pasting from excel
+        let dateFromRow = new Date(item.start).toISOString().split('T')[0];
+        return dateFromRow === enteredDate;
+      }      
     }
+
+
   });
-  // console.log('validator:',args, grid, data, items);
-  // console.log('duplicate item:', containsDate);
+  // console.log('validator:', args, grid, data, items);
+  // console.log('duplicate item:', itemContainingDate);
   if (itemContainingDate) {
     return { valid: false, msg: `error saving data point, data for ${itemContainingDate.start} already exists` };
   }
@@ -41,6 +56,7 @@ export class SlickgridWrapperComponent implements OnInit {
   gridObj: any;
   alertWarning: any;
   isAutoEdit: boolean = true;
+  updatedObject: any;
   private _commandQueue = [];
 
   constructor(
@@ -61,14 +77,16 @@ export class SlickgridWrapperComponent implements OnInit {
       if (e.which == 46) {
         var selectedData = [];
         let selectedRowIds = this.gridObj.getSelectedRows();
+        console.log(selectedRowIds);
         selectedRowIds.forEach((value) => {
           selectedData.push(this.gridObj.getDataItem(value));
         });
+        console.log('deleting selected', selectedData);
         this.angularGrid.gridService.deleteItems(selectedData);
       }
     });
 
-    this.gridObj.onValidationError.subscribe((e,args) => {
+    this.gridObj.onValidationError.subscribe((e, args) => {
       //use this message to pop up error
       console.log(args.validationResults.msg);
       this.errorDialogService.openPopUpError(args.validationResults.msg);
@@ -76,14 +94,34 @@ export class SlickgridWrapperComponent implements OnInit {
   }
 
   onCellChanged(e, args) {
-    // this.updatedObject = args.item;
-    console.log('onCellChanged', e, args);
-    this.angularGrid.resizerService.resizeGrid(10);
+    const metadata = this.angularGrid.gridService.getColumnFromEventArguments(args);
+
+    console.log(metadata);
+    this.updatedObject = args.item;
   }
 
   onCellClicked(e, args) {
-    console.log('onCellClicked', e, args);
-    // do something
+    const metadata = this.angularGrid.gridService.getColumnFromEventArguments(args);
+
+    // when a cell is clicked, remove highlight
+    this.gridObj.setSelectedRows([]); // remove highlight
+    //event.preventDefault();
+
+    console.log('onCellClicked', metadata);
+
+    if (metadata.columnDef.id === 'edit') {
+      this.alertWarning = `open a modal window to edit: ${metadata.dataContext.title}`;
+
+      // highlight the row, to customize the color, you can change the SASS variable $row-highlight-background-color
+      this.angularGrid.gridService.highlightRow(args.row, 1500);
+
+      // you could also select the row, when using "enableCellNavigation: true", it automatically selects the row
+      // this.angularGrid.gridService.setSelectedRow(args.row);
+    } else if (metadata.columnDef.id === 'delete') {
+      if (confirm('Are you sure?')) {
+        this.angularGrid.gridService.deleteItemById(metadata.dataContext.id);
+      }
+    }
   }
 
   prepareGrid() {
@@ -120,10 +158,10 @@ export class SlickgridWrapperComponent implements OnInit {
         minWidth: 30,
         maxWidth: 30,
         // use onCellClick OR grid.onClick.subscribe which you can see down below
-        onCellClick: (e: Event, args: OnEventArgs) => {
-          this.alertWarning = `Deleting: ${args.dataContext.title}`;
-          this.angularGrid.gridService.deleteItem(this);
-        }
+        // onCellClick: (e: Event, args: OnEventArgs) => {
+        //   this.alertWarning = `Deleting: ${args.dataContext.title}`;
+        //   this.angularGrid.gridService.deleteItem(this);
+        // }
 
       },
       {
@@ -136,7 +174,7 @@ export class SlickgridWrapperComponent implements OnInit {
         sortable: true,
         type: FieldType.string,
         editor: {
-          model: Editors.longText,
+          model: Editors.text,
           required: true
         }
       },
@@ -160,8 +198,8 @@ export class SlickgridWrapperComponent implements OnInit {
         formatter: Formatters.decimal,
         editor: {
           model: Editors.text,
-          minValue: 0,
-          maxValue: 100
+          // minValue: 0, //wont work
+          // maxValue: 100
         },
         width: 10
       },
@@ -172,11 +210,11 @@ export class SlickgridWrapperComponent implements OnInit {
         editor: {
           model: Editors.date,
           required: true,
-          validator: duplicateDateSgValidator,
-          title: 'test error'
+          validator: duplicateDateSgValidator
+          // title: 'test error'
         },
-        type: FieldType.date,
-        formatter: Formatters.dateIso,
+        type: FieldType.dateUs,
+        formatter: Formatters.dateUs,
         maxWidth: 100,
         onCellChange: (e: Event, args: OnEventArgs) => {
           // do something
@@ -191,8 +229,8 @@ export class SlickgridWrapperComponent implements OnInit {
           model: Editors.date,
           required: true
         },
-        type: FieldType.date,
-        formatter: Formatters.dateIso,
+        type: FieldType.dateUs,
+        formatter: Formatters.dateUs,
         maxWidth: 100
       },
     ];
@@ -209,7 +247,7 @@ export class SlickgridWrapperComponent implements OnInit {
       enableCellNavigation: true,
       enableColumnPicker: true,
       enableExcelCopyBuffer: true,
-      enableFiltering: true,
+      // enableFiltering: true,
       editCommandHandler: (item, column, editCommand) => {
         this._commandQueue.push(editCommand);
         editCommand.execute();
@@ -228,8 +266,23 @@ export class SlickgridWrapperComponent implements OnInit {
     this.dataset = this.mockData(30);
   }
 
-  popUpError(e,args){
-    console.log(e,args);
+  addBlankRow(): void {
+    console.log('Adding blank row');
+    console.log(this.dataset);
+    let allIds: number[] = this.dataset.map(data => <number>(data.id));
+    let newRowIndex = 0;
+    if (allIds.length>0) {
+      allIds.sort((a, b) => b - a);      
+      newRowIndex = allIds[0] + 1;
+    }
+
+    const tempDataset = [];
+    tempDataset.push({ id: newRowIndex });
+    this.angularGrid.gridService.addItem(tempDataset[0], {position: 'bottom'});
+  }
+
+  popUpError(e, args) {
+    console.log(e, args);
   }
 
   mockData(itemCount, startingIndex = 0) {

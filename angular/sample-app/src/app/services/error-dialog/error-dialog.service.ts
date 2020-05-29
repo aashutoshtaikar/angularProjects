@@ -9,7 +9,6 @@ export class ErrorDialogService {
   constructor() { }
 
   openPopUpError(msg: string){
-    
     this.validationError.next(msg);
   }
 }
