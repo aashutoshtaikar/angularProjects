@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularSlickgridModule, Column, GridOption, FieldType, Editors, AngularGridInstance, Formatters, OnEventArgs, EditorValidator, EditorArgs } from 'angular-slickgrid';
 import { TranslateService } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
-import { ErrorDialogService } from '../../services/error-dialog/error-dialog.service';
+import { ErrorDialogService } from 'src/app/services/error-dialog/error-dialog.service';
+
 
 const duplicateDateSgValidator: EditorValidator = (value: any, args: EditorArgs) => {
   console.log(value);

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
-import { ErrorDialogService } from './shared/services/error-dialog/error-dialog.service';
+import { ErrorDialogComponent } from './modules/shared/components/error-dialog/error-dialog.component';
+import { ErrorDialogService } from './services/error-dialog/error-dialog.service';
 
 @Component({
   selector: 'app-root',

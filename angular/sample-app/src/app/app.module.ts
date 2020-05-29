@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonComponent } from './components/common/common.component';
+import { SharedModule } from './modules/shared/shared.module';
+import { ExamplesModule } from './modules/examples/examples.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { CommonComponent } from './components/common/common.component';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    ExamplesModule,
     BrowserAnimationsModule
   ],
   providers: [],

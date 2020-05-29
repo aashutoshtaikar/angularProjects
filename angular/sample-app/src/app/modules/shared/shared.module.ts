@@ -4,6 +4,7 @@ import { SlickgridWrapperComponent } from './components/slickgrid-wrapper/slickg
 import { AngularSlickgridModule } from 'angular-slickgrid';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import * as Material from '@angular/material';
+import { NgxChartsExampleComponent } from '../examples/ngx-charts-example/ngx-charts-example.component';
 
 @NgModule({
   declarations: [SlickgridWrapperComponent, ErrorDialogComponent],
