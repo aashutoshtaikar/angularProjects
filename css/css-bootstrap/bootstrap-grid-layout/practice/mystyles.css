@@ -1,0 +1,34 @@
+/* body{
+    background-color: antiquewhite;
+}
+*/
+
+.my-container {
+    background-color: rgb(206, 206, 206);
+}
+
+.my-row {
+}
+
+.my-col {
+    border: 10px solid black;
+    
+}
+
+/* .my-col:hover{
+    background-color: ;
+} */
+
+/* .my-col:nth-child(2n){
+    background-color: palevioletred;
+} */
+
+img {
+    width: 100%;
+    height: inherit;
+}
+
+.img-box{
+    displ
+    height: 300px;
+}
