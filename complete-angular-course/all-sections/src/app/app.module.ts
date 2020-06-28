@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { S6DirectivesModule } from './s6-directives/s6-directives.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { S6DirectivesModule } from './s6-directives/s6-directives.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    S6DirectivesModule
+    S6DirectivesModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

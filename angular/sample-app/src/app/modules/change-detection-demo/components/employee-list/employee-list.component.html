@@ -1,0 +1,14 @@
+<div class="container employee-list">
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{employee.id}}</td>
+                <td>{{employee.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

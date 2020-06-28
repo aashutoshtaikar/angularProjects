@@ -1,0 +1,20 @@
+<section class="main-header">
+    <button class="btn btn-primary mx-2 my-2" (click)="getEmployees()">Test</button>
+    <div *ngIf="employees">
+        <cdd-control-header [employee]="employee" [employees]="employees"></cdd-control-header>
+    </div>
+
+    <div class="container">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input [(ngModel)]="employee.name"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div *ngIf="employees">
+        <cdd-employee-list [employees]="employees"></cdd-employee-list>
+    </div>
+
+</section>

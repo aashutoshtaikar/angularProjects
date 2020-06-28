@@ -1,0 +1,7 @@
+<p>ngfor demo!</p>
+
+<ul>
+    <li *ngFor="let course of courses; index as i; even as isEven">
+        {{i}} {{course.name}} <span *ngIf="isEven">even</span>
+    </li>
+</ul>

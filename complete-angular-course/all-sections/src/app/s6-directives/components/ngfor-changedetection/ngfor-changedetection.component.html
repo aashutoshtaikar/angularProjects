@@ -1,0 +1,10 @@
+<p>ngfor-changedetection works!</p>
+<button (click)="onAdd()">Add</button>
+<ul>
+    <li *ngFor="let course of courses; index as i">
+        {{i}} {{course.name}} 
+        <button (click)="onEdit(course)">Edit</button>
+        <button (click)="onRemove(course)">Remove</button>
+    </li>
+</ul>
+
