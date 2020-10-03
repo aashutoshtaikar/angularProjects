@@ -1,0 +1,27 @@
+<p>s5-reusable-components works!</p>
+<!-- <s5-favorite [isFavorite]="post.isFavorite" (favoriteComponentChanged)="onFavoriteChanged($event)"></s5-favorite> -->
+<!-- Property binding
+<s5-panel [body]="body"></s5-panel> -->
+<div class="row col-5">
+    But what if we want to add markup here itself, use ng-content rather than property binding
+    <br>
+    <s5-panel class="w-100">
+        <div class="heading">Heading</div>
+        <div class="body p-3">
+            <h2>Body</h2>
+            <p>some content here...</p>
+        </div>
+    </s5-panel>
+</div>
+
+to avoid being displayed as ng-content inside the card-header add ng-container where adding data to ng-content
+<div class="row col-5">
+    <br>
+    <s5-panel class="w-100">
+        <ng-container class="heading">Heading</ng-container>
+        <div class="body p-3">
+            <h2>Body</h2>
+            <p>some content here...</p>
+        </div>
+    </s5-panel>
+</div>
